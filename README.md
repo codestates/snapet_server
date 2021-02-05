@@ -1,1 +1,0 @@
-# snapet_server
