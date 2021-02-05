@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "snapet",
+    "password": "1234",
+    "database": "proj1_snapet",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "snapet",
+    "password": "1234",
+    "database": "proj1_snapet",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "snapet",
+    "password": "1234",
+    "database": "proj1_snapet",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
