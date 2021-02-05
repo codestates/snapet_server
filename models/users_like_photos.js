@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   users_like_photos.init({
-    user_id: DataTypes.INTEGER,
-    photo_id: DataTypes.INTEGER,
-    count_like: {
+    userId: DataTypes.INTEGER,
+    photoId: DataTypes.INTEGER,
+    countLike: {
       type: DataTypes.INTEGER,
       defaultValue: 0
     }

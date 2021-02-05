@@ -25,16 +25,16 @@ module.exports = {
     await queryInterface.bulkInsert('photos', [{
       filepath: 'chunja.jpg',
       content: 'miss u',
-      user_id: usersRows[0].id,
+      userId: usersRows[0].id,
       createdAt: new Date(),
       updatedAt: new Date()
     }])
     const photos = await queryInterface.sequelize.query(`SELECT id FROM photos`);
     const photosRows = photos[0];
     return await queryInterface.bulkInsert('users_like_photos', [{
-      user_id: usersRows[0].id,
-      photo_id: photosRows[0].id,
-      count_like: 1,
+      userId: usersRows[0].id,
+      photoId: photosRows[0].id,
+      countLike: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     }])

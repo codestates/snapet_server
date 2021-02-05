@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   users.associate = models => {
     users.hasMany(models.photos, {
-      foreignKey: 'user_id'
+      foreignKey: 'userId'
     })
     users.belongsToMany(models.photos, {
       through: 'users_like_photos'

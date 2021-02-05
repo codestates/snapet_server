@@ -8,21 +8,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
           key: 'id'
         }
       },
-      photo_id: {
+      photoId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'photos',
           key: 'id'
         }
       },
-      count_like: {
+      countLike: {
         type: Sequelize.INTEGER,
         defaultValue: 0
       },
