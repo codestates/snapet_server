@@ -1,11 +1,13 @@
 const { users } = require('../../models')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs');
 
 module.exports = async (req, res) => {
     const userInfo = await users.findOne({
-        where: { email: req.body.email, password: req.body.password },
+        where: { email: req.body.email},
     })
-    if (!userInfo) {
+    const check = bcrypt.compare(req.body.password,userInfo.password)
+    if (!check) {
         res.json({ data: null, message: "not authorized" })
     }
     delete userInfo.dataValues.password
