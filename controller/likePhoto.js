@@ -2,11 +2,9 @@ const { photos, users, users_like_photos, sequelize } = require('../models');
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
-  const { photoId, userId } = req.body;
-
   const authorization = req.headers['authorization'];
 
-  if (!accessTokenData) {
+  if (!authorization) {
     return res.status(404).send('존재 하지 않은 유저');
   }
 
