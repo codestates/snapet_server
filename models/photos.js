@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class photos extends Model {
     /**
@@ -12,19 +10,24 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  photos.init({
-    filepath: DataTypes.STRING,
-    content: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'photos',
-  });
-  photos.associate = models => {
-    photos.belongsTo(models.users)
-    photos.belongsToMany(models.users, {
-      through: 'users_like_photos'
-    })
   }
+  photos.init(
+    {
+      filepath: DataTypes.STRING,
+      content: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: 'photos',
+    }
+  );
+  photos.associate = (models) => {
+    photos.belongsTo(models.users, {
+      onDelete: 'cascade',
+    });
+    photos.belongsToMany(models.users, {
+      through: 'users_like_photos',
+    });
+  };
   return photos;
 };

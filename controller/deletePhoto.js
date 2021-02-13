@@ -6,7 +6,7 @@ module.exports = async (req,res) => {
     const photo = await photos.findOne({
       where : { filepath : req.body.filepath }
     })
-    //console.log(photo)
+    console.log(photo)
     if(photo){
       await photo.destroy({
         where: { filepath : req.body.filepath },

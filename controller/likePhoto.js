@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
         return res.status(200).json('click like');
       } else if (posts) {
         await users_like_photos.destroy({
-          where: { photoId: req.body.photoId, userId: req.body.userId },
+          where: { photoId: req.body.photoId, userId: decoded.id },
         });
         return res.status(200).json('cancel like');
       }
