@@ -1,8 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,node
 
-ACCESS_SECRET='ba853dbc2c109d4aecb2b5de6021e4c2b8a0d3f6a51f960bbb3a09d0954e936c344ed06130f53c9b43b1a2e2827c72aa9ae0865848bc5da8287824b1a1da09cc'
-
 config/config.json
 ### macOS ###
 # General
