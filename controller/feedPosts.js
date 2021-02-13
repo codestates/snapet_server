@@ -1,5 +1,5 @@
 const { photos, users, users_like_photos, sequelize } = require('../models');
-console.log('check!');
+
 module.exports = async (req, res) => {
   const posts = await photos.findAll({
     attributes: {
