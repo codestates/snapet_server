@@ -1,4 +1,4 @@
-const models = require('../models')
-module.exports = {
+const { users } = require('../models');
+const jwt = require('jsonwebtoken');
 
-}
+module.exports = async (req, res) => {};
