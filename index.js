@@ -55,6 +55,7 @@ const login = require('./controller/jwt/login')
 
 app.put('/updateProfileImg', updateProfileImg);
 app.put('/updateAboutMe', updateAboutMe);
+app.put('/editPostDescription',require('./controller/editPostDescription'))
 
 app.post('/signup', signup);
 app.post('/newpost', newpost);
