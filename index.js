@@ -6,6 +6,7 @@ const fs = require('fs');
 const cookieSession = require('cookie-session')
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require("dotenv").config();
 const serverOption = {
   key: fs.readFileSync(__dirname + '/key.pem','utf-8'),
   cert: fs.readFileSync(__dirname + '/cert.pem','utf-8'),
@@ -50,14 +51,14 @@ const newpost = require('./controller/newpost');
 const mypagePosts = require('./controller/mypagePosts');
 const feedPosts = require('./controller/feedPosts');
 const likePhoto = require('./controller/likePhoto');
-const login = require('./controller/login')
+const login = require('./controller/jwt/login')
 
 app.put('/updateProfileImg', updateProfileImg);
 app.put('/updateAboutMe', updateAboutMe);
 
 app.post('/signup', signup);
 app.post('/newpost', newpost);
-app.post('/deletePhoto', deletePhoto.post);
+//app.post('/deletePhoto', deletePhoto.post);
 app.post('/likePhoto', likePhoto);
 app.post('/deletePhoto', deletePhoto);
 
@@ -80,10 +81,24 @@ app.get('/google/callback', passport.authenticate('google', { failureRedirect: '
     //성공하면 /good 이쪽으로 넘어감
     }
 );
+app.get('/kakao/callback', function (req, res, next) {
+  passport.authenticate('kakao', function (err, user) {
+    console.log('passport.authenticate(kakao)실행');
+    if (!user) { return res.redirect('http://localhost:5000'); }
+    req.logIn(user, function (err) { 
+      console.log('kakao/callback user : ', user);
+      return res.redirect('http://localhost:5000/');        
+    });
+  })(req, res);
+});
+
+app.get('/kakao', passport.authenticate('kakao'))
+
 app.get('/logout', (req, res) => {
   req.session = null;
   req.logout();
   res.redirect('/');
 })
+
 https.createServer(serverOption,app);
 app.listen(5000);
