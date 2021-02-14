@@ -6,7 +6,8 @@ module.exports = async (req, res) => {
   const userInfo = await users.findOne({
     where: { email: req.body.email },
   });
-  const check = bcrypt.compare(req.body.password, userInfo.password);
+  const check = await bcrypt.compare(req.body.password, userInfo.password);
+
   if (!check) {
     res.json({ data: null, message: 'not authorized' });
   }
