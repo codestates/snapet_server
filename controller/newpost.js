@@ -26,12 +26,10 @@ module.exports = async (req, res) => {
         content,
         userId: user.id,
       });
-
       // await users_like_photos.create({
       //   userId: user.id,
       //   photoId: photo.id,
       // });
-
       return res.status(200).json({ id: photo.id });
     }
   );

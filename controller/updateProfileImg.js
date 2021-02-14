@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
   if (!authorization) {
     return res.status(404).send('존재 하지 않은 유저');
   }
-
   const token = authorization.split(' ')[1];
   const tokenData = jwt.verify(
     token,
