@@ -27,10 +27,13 @@ module.exports = (sequelize, DataTypes) => {
   users.associate = (models) => {
     users.hasMany(models.photos, {
       foreignKey: 'userId',
-      onDelete: 'cascade',
+      onDelete: 'CASCADE',
+      hooks: true,
     });
     users.belongsToMany(models.photos, {
       through: 'users_like_photos',
+      onDelete: 'CASCADE',
+      hooks: true,
     });
   };
   return users;

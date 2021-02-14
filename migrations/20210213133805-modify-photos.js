@@ -10,7 +10,7 @@ module.exports = {
      */
     await queryInterface.changeColumn('photos', 'userId', {
       type: Sequelize.INTEGER,
-      onDelete: 'cascade',
+      onDelete: 'CASCADE',
       references: {
         model: 'users',
         key: 'id',

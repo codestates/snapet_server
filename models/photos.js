@@ -23,10 +23,13 @@ module.exports = (sequelize, DataTypes) => {
   );
   photos.associate = (models) => {
     photos.belongsTo(models.users, {
-      onDelete: 'cascade',
+      onDelete: 'CASCADE',
+      hooks: true,
     });
     photos.belongsToMany(models.users, {
       through: 'users_like_photos',
+      onDelete: 'CASCADE',
+      hooks: true,
     });
   };
   return photos;
