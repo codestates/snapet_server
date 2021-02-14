@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   const authorization = req.headers['authorization'];
 
   if (!authorization) {
-    return res.status(404).send('존재 하지 않은 유저');
+    return res.status(404).json('invalid access token');
   }
 
   const token = authorization.split(' ')[1];
@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     token,
     process.env.ACCESS_SECRET,
     async function (err, decoded) {
-      if (err) return res.status(400).send('error');
+      if (err) return res.status(404).json('wrong access token');
 
       const posts = await photos.findAll({
         attributes: {
