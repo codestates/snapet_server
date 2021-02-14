@@ -5,19 +5,19 @@ module.exports = async (req, res) => {
   const authorization = req.headers['authorization'];
 
   if (!authorization) {
-    return res.status(404).send('존재 하지 않은 유저');
+    return res.status(404).json('invalid access token');
   }
   const token = authorization.split(' ')[1];
   const tokenData = jwt.verify(
     token,
     process.env.ACCESS_SECRET,
     async function (err, decoded) {
-      if (err) return res.status(400).send('error');
+      if (err) return res.status(404).json('wrong access token');
 
       const user = await users.findOne({ where: { id: decoded.id } });
 
       if (!user) {
-        return res.send('access token has been tempered');
+        return res.status(404).json('invalid userInfo');
       }
       // const { profilepath } = user;
       // profilepath = req.body.image;
