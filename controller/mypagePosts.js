@@ -8,12 +8,10 @@ module.exports = async (req, res) => {
   }
 
   const token = authorization.split(' ')[1];
-  console.log(token, '====================');
   const tokenData = jwt.verify(
     token,
     process.env.ACCESS_SECRET,
     async function (err, decoded) {
-      console.log('----------------------');
       if (err) return res.status(400).send('error');
 
       const posts = await photos.findAll({

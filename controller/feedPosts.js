@@ -14,7 +14,6 @@ module.exports = async (req, res) => {
           ),
           'countLike',
         ],
-        // [sequelize.col('users.users_like_photos.countLike'), 'countLike'],
       ],
     },
     group: ['id'],
