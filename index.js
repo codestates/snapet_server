@@ -8,9 +8,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 const serverOption = {
-  key: fs.readFileSync(__dirname + '/../../../../Seulji/keys/key.pem', 'utf-8'),
+  key: fs.readFileSync(__dirname + '/key.pem', 'utf-8'),
   cert: fs.readFileSync(
-    __dirname + '/../../../../Seulji/keys/cert.pem',
+    __dirname + '/cert.pem',
     'utf-8'
   ),
 };
@@ -50,6 +50,7 @@ app.use(passport.session());
 
 //methods
 const deletePhoto = require('./controller/deletePhoto');
+const removeBG = require("./controller/removeBg");
 const userInfo = require('./controller/userInfo');
 const updateProfileImg = require('./controller/updateProfileImg');
 const updateAboutMe = require('./controller/updateAboutMe');
@@ -69,6 +70,7 @@ app.post('/newpost', newpost);
 //app.post('/deletePhoto', deletePhoto.post);
 app.post('/likePhoto', likePhoto);
 app.post('/deletePhoto', deletePhoto);
+app.post("/removeBG", removeBG);
 
 app.get('/mypagePosts', mypagePosts);
 app.get('/feedPosts', feedPosts);
@@ -112,11 +114,8 @@ app.get('/kakao/callback', function (req, res, next) {
 
 app.get('/kakao', passport.authenticate('kakao'));
 
-app.get('/logout', (req, res) => {
-  req.session = null;
-  req.logout();
-  res.redirect('/');
-});
+app.get('/logout', require('./controller/logout'));
 
 https.createServer(serverOption, app);
+
 app.listen(5000);
